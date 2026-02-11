@@ -1,128 +1,59 @@
-"use client";
+import Link from "next/link";
 import Image from "next/image";
-import { Link } from "react-scroll";
-
-const social = [
-    {
-        icon: "fab fa-facebook-f",
-        color: "facebook-bg",
-        link: "https://www.facebook.com/shasan.dhakal.10/",
-    },
-    {
-        icon: "fab fa-github",
-        color: "bg-dark",
-        link: "https://github.com/shasan11",
-    },
-    {
-        icon: "fab fa-linkedin-in",
-        color: "linkedin-bg",
-        link: "https://www.linkedin.com/in/shasan-dhakal/",
-    },
-    {
-        icon: "fab fa-instagram",
-        color: "instagram-bg",
-        link: "https://www.instagram.com/me_shasan/",
-    },
-];
+import navigation from "@/data/navigation";
+import { siteLinks } from "@/data/portfolio-content";
 
 export default function Footer() {
     return (
         <footer>
-            <div className="footer-area over-hidden pt-110 mb-80">
-                <div className="footer-top">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xl-4  col-lg-5  col-md-8  col-sm-7 col-12">
-                                <div className="footer-widget footer-logo pb-40">
-                                    <div className="foot-logo mb-30">
-                                        <Image
-                                            height={36}
-                                            width={160}
-                                            src="/images/logo/logo.png"
-                                            alt="Themes"
-                                        />
-                                    </div>
-                                    <div className="copyright-text">
-                                        <p className="mb-0">
-                                            All rights reserved{" "}
-                                            <Link
-                                                href="https://shasandhakal.com.np"
-                                                className="c-theme primary-color f-600"
-                                            >
-                                                Shasan Dhakal
-                                            </Link>{" "}
-                                            © {new Date().getFullYear()}
-                                        </p>
-                                    </div>
+            <div className="footer-area over-hidden pt-80 pb-60">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-5 mb-30">
+                            <div className="footer-widget">
+                                <div className="foot-logo mb-20">
+                                    <Image height={36} width={160} src="/images/logo/logo.png" alt="Shasan Dhakal" />
                                 </div>
+                                <p className="mb-15">
+                                    Product Manager with full-stack background building B2B SaaS across logistics, GCC SME operations, and learning platforms.
+                                </p>
+                                <p className="mb-0">
+                                    Email: {siteLinks.email} • LinkedIn: linkedin.com/in/shasan-dhakal • GitHub: github.com/shasan11
+                                </p>
                             </div>
-                            <div className="col-xl-3 offset-xl-2 col-lg-3  col-md-4 col-sm-4 col-12 d-none d-sm-block d-lg-none">
-                                <div className="footer-widget pb-40">
-                                    <h5 className="mb-28 mt-2">Follow Me</h5>
-                                    <ul className="social social-bg text-center d-flex">
-                                        {/* footer social start */}
-                                        {social?.map((item, i) => (
-                                            <li
-                                                key={i}
-                                                className="mr-2 rotate-hover"
-                                            >
-                                                <Link
-                                                    className={`${item.color} text-center pr-0 text-white d-block transition-3 rotate`}
-                                                    href={item.link}
-                                                >
-                                                    <i className={item.icon} />
-                                                </Link>
+                        </div>
+
+                        <div className="col-lg-3 mb-30">
+                            <div className="footer-widget">
+                                <h5 className="mb-20">Quick Links</h5>
+                                <ul>
+                                    {navigation
+                                        .filter((item) => item.path !== "/")
+                                        .map((item) => (
+                                            <li key={item.path} className="mb-2">
+                                                <Link href={item.path}>{item.label}</Link>
                                             </li>
                                         ))}
-                                        {/* footer social end */}
-                                    </ul>
-                                </div>
+                                </ul>
                             </div>
-                            {/* /col */}
-                            <div className="col-xl-3  col-lg-4  col-md-12  col-sm-12 col-12">
-                                <div className="footer-widget pb-40">
-                                    <h5 className="mb-28 mt-2">Newsletter</h5>
-                                    <div className="newsletter-form">
-                                        <form action="#">
-                                            <div className="subscribe-info position-relative">
-                                                <input
-                                                    className="sub-name theme-border pl-25 pt-15 pb-15 pr-10 w-100 secondary-color2 border-radius5 bg-white"
-                                                    type="email"
-                                                    name="email"
-                                                    id="Email"
-                                                    required
-                                                    placeholder="Submit your email"
-                                                />
-                                                <span className="d-block position-absolute theme-color cursor-pointer">
-                                                    <i className="fal fa-envelope" />
-                                                </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                        </div>
+
+                        <div className="col-lg-4 mb-30">
+                            <div className="footer-widget">
+                                <h5 className="mb-20">Connect</h5>
+                                <ul>
+                                    <li className="mb-2"><Link href={`mailto:${siteLinks.email}`}>Email Me</Link></li>
+                                    <li className="mb-2"><Link href={siteLinks.linkedin} target="_blank" rel="noreferrer">LinkedIn</Link></li>
+                                    <li className="mb-2"><Link href={siteLinks.github} target="_blank" rel="noreferrer">GitHub</Link></li>
+                                    <li><Link href={siteLinks.portfolio} target="_blank" rel="noreferrer">Portfolio Site</Link></li>
+                                </ul>
                             </div>
-                            {/* /col */}
-                            <div className="col-xl-3 offset-xl-2 col-lg-3  col-md-4 col-sm-4 col-12  d-sm-none d-lg-block">
-                                <div className="footer-widget pb-40">
-                                    <h5 className="mb-28 mt-2">Follow Me</h5>
-                                    <ul className="social social-bg text-center d-flex">
-                                        {/* footer social start */}
-                                        {social?.map((item, i) => (
-                                            <li
-                                                key={i}
-                                                className="mr-2 rotate-hover"
-                                            >
-                                                <Link
-                                                    className={`${item.color} text-center pr-0 text-white d-block transition-3 rotate`}
-                                                    href={item.link}
-                                                >
-                                                    <i className={item.icon} />
-                                                </Link>
-                                            </li>
-                                        ))}
-                                        {/* footer social end */}
-                                    </ul>
-                                </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="copyright-text pt-20 mt-10 border-top text-center">
+                                <p className="mb-0">© {new Date().getFullYear()} Shasan Dhakal. All rights reserved.</p>
                             </div>
                         </div>
                     </div>

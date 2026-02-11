@@ -1,27 +1,24 @@
+"use client";
 import navigation from "@/data/navigation";
-import { Link } from "react-scroll";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
+    const pathname = usePathname();
+
     return (
         <nav className="d-none d-lg-block">
             <ul className="d-block">
-                {/* navigation start */}
-                {navigation?.map((item, i) => (
-                    <li key={i}>
+                {navigation.map((item) => (
+                    <li key={item.path}>
                         <Link
-                            href="#"
-                            to={item.path}
-                            spy={true}
-                            smooth={true}
-                            offset={-70}
-                            duration={500}
-                            activeClass="ui-nav-active"
+                            href={item.path}
+                            className={pathname === item.path ? "ui-nav-active" : ""}
                         >
-                            {item.name}
+                            {item.label}
                         </Link>
                     </li>
                 ))}
-                {/* navigation end */}
             </ul>
         </nav>
     );
